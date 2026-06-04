@@ -6,17 +6,18 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-class Student3 {
+/*
+class Student {
     // private으로 하는 이유 : 다른 코드 속에서 값을 강제로 못 바꾸게 하기 위해서
     // -> setter, getter로 값 사용함.
     private String name = "";
     private int age = 0;
     private String num = "";
 
-    Student3(){}
+    Student(){}
 
     // 생성자 사용하여 바로 이름 나이 번호 입력
-    Student3(String name, int age, String num){
+    Student(String name, int age, String num){
         this.name = name;
         this.age = age;
         this.num = num;
@@ -61,12 +62,13 @@ class Student3 {
         System.out.println("이름 : " + name + " 나이 : " + age +" 번호 : " + num);
     }
 }
+ */
 
-
+/*
 class ManageStudent {
 
     // 학생정보 저장공간
-    List<Student3> list = new ArrayList<>();
+    List<Student> list = new ArrayList<>();
 
     Scanner sc;
 
@@ -77,7 +79,7 @@ class ManageStudent {
 
     // 학생 정보 list 및 student.txt 파일에 저장
     void addStudent(){
-        Student3 s = new Student3();
+        Student s = new Student();
 
         System.out.println("이름 : ");
         String inputName = sc.nextLine();
@@ -112,16 +114,16 @@ class ManageStudent {
         String inputNum = sc.nextLine();
 
         while (true) {
-            boolean deplicated = false;
+            boolean duplicated = false;
 
-            for (Student3 student : list) {
-                if (student.getNum().equals(inputNum)) {
-                    deplicated = true;
+            for (Student s : list) {
+                if (s.getNum().equals(inputNum)) {
+                    duplicated = true;
                     break;  // 중복 번호 발견 시 for문 탈출
                 }
             }
 
-            if(!deplicated){
+            if(!duplicated){
                 break; // 중복 번호 없을 시 while문 탈출
             }
 
@@ -131,7 +133,7 @@ class ManageStudent {
             inputNum = sc.nextLine();
         }
 
-        Student3 s = new Student3(inputName, inputAge, inputNum);
+        Student s = new Student(inputName, inputAge, inputNum);
         list.add(s);
         saveFile();
         System.out.println("등록 완료!");
@@ -139,7 +141,7 @@ class ManageStudent {
 
     // 학생 정보 출력
     void printAll(){
-        for(Student3 s : list)  // list[0]부터 끝까지 하나씩 s에 넣어 반복문 돌리기. 전체 출력 시 코드 단순화 장점
+        for(Student s : list)  // list[0]부터 끝까지 하나씩 s에 넣어 반복문 돌리기. 전체 출력 시 코드 단순화 장점
             s.showInfo();
     }
 
@@ -280,7 +282,7 @@ class ManageStudent {
         if (!found)  System.out.println("해당 없음.");
     }
 
-    // 이름으로 학생 검색 후 학생정보 출력, 동명이인 모두 출력 및 contaions()를 활용하여 포함값 전체 출력함.
+    // 이름으로 학생 검색 후 학생정보 출력, 동명이인 모두 출력 및 contains()를 활용하여 포함값 전체 출력함.
     void searchStudentByName(){
         System.out.println("이름을 입력하시오.");
         boolean found = false;
@@ -300,7 +302,7 @@ class ManageStudent {
         try {
             FileWriter fw = new FileWriter("student.txt");
 
-            for(Student3 s : list) {
+            for(Student s : list) {
                 fw.write(s.getName() + "," + s.getAge() + "," + s.getNum() + "\n");
             }
             fw.close();
@@ -322,7 +324,7 @@ class ManageStudent {
 
                 String[] arr = line.split(",");
 
-                Student3 s = new Student3();
+                Student s = new Student();
 
                 s.setName(arr[0]);
                 s.setAge(Integer.parseInt(arr[1]));
@@ -352,7 +354,7 @@ class ManageStudent {
 
                 String[] arr = line.split(",");
 
-                Student3 s = new Student3(arr[0], Integer.parseInt(arr[1]), arr[2]);
+                Student s = new Student(arr[0], Integer.parseInt(arr[1]), arr[2]);
 
                 list.add(s);
             }
@@ -367,9 +369,9 @@ class ManageStudent {
         }
     }
 }
+ */
 
-
-public class test3 {
+public class Main {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         ManageStudent ms = new ManageStudent(sc);
