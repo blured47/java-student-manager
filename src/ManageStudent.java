@@ -18,6 +18,27 @@ class ManageStudent {
         this.sc = sc;
     }
 
+    int inputAge(){
+        int age;
+        while(true){
+            try{
+                System.out.println("나이 : ");
+                age = Integer.parseInt(sc.nextLine().trim());
+
+                if(age>=0)
+                    break;
+
+                System.out.println("0 이상의 숫자를 입력하세요.");
+            }
+            catch (Exception e){
+                System.out.println("숫자를 입력해주세요.");
+            }
+        }
+        return age;
+    }
+
+
+
     // 학생 정보 list 및 student.txt 파일에 저장
     void addStudent(){
         Student s = new Student();
@@ -46,13 +67,12 @@ class ManageStudent {
     // 생성자를 사용하여 학생정보 생성과 동시에 값을 넣음 , 번호 중복 체크 추가
     void addStudentUsingConstructor() {
         System.out.println("이름 : ");
-        String inputName = sc.nextLine();
+        String inputName = sc.nextLine().trim();
 
-        System.out.println("나이 : ");
-        int inputAge = Integer.parseInt(sc.nextLine());
+        int inputAge = inputAge();
 
         System.out.println("번호 : ");
-        String inputNum = sc.nextLine();
+        String inputNum = sc.nextLine().trim();
 
         while (true) {
             boolean duplicated = false;
@@ -72,7 +92,7 @@ class ManageStudent {
             //중복 번호 발견 시에만 실행됨
             System.out.println("이미 존재하는 번호입니다.");
             System.out.println("번호를 다시 입력하시오 : ");
-            inputNum = sc.nextLine();
+            inputNum = sc.nextLine().trim();
         }
 
         Student s = new Student(inputName, inputAge, inputNum);
@@ -116,11 +136,12 @@ class ManageStudent {
                 found = true;
                 list.get(updateIndex).showInfo();
                 System.out.println("새 이름 : ");
-                list.get(updateIndex).setName(sc.nextLine());
-                System.out.println("새 나이 : ");
-                list.get(updateIndex).setAge(Integer.parseInt(sc.nextLine()));
+                list.get(updateIndex).setName(sc.nextLine().trim());
+                // System.out.println("새 나이 : ");
+                // list.get(updateIndex).setAge(Integer.parseInt(sc.nextLine().trim()));
+                list.get(updateIndex).setAge(inputAge());
                 System.out.println("새 번호 : ");
-                list.get(updateIndex).setNum(sc.nextLine());
+                list.get(updateIndex).setNum(sc.nextLine().trim());
             }
         }
         if(found){
